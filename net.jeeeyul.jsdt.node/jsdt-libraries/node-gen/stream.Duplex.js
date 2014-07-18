@@ -1,0 +1,5 @@
+/**
+ * @constructor
+ */
+stream.Duplex = function(){
+}

@@ -1,0 +1,5 @@
+/**
+ * @constructor
+ */
+https.Agent = function(){
+}

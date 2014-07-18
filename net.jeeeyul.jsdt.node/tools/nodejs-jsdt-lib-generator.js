@@ -47,6 +47,7 @@ handlebars.registerHelper("validParams", function() {
 });
 
 handlebars.registerHelper("wrapJSDoc", function(desc) {
+	desc = desc.replace(/\*/g, "%2F");
 	return "/**\n * " + desc.replace(/\n/g, "\n * ") + "*/";
 });
 
@@ -56,7 +57,12 @@ handlebars.registerHelper("wrapJSDoc", function(desc) {
 var filenames = fs.readdirSync(inputDir);
 filenames.forEach(function(each) {
 	var fullPath = path.join(inputDir, each);
-	var model = JSON.parse(fs.readFileSync(fullPath).toString()).modules[0];
+	var json=JSON.parse(fs.readFileSync(fullPath).toString());
+	if(json.modules == undefined){
+		return;
+	}
+	
+	var model = json.modules[0];
 	if (model.classes) {
 		model.classes.forEach(function(each) {
 			generateJSDTLibrary(each);

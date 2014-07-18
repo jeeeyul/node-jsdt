@@ -306,7 +306,7 @@ Buffer.prototype.readInt8 = function(offset, noAssert){
  * may be beyond the end of the buffer. Defaults to <code>false</code>.
  * 
  * </p>
- * <p>Works as <code>buffer.readUInt16*</code>, except buffer contents are treated as two&#39;s
+ * <p>Works as <code>buffer.readUInt16%2F</code>, except buffer contents are treated as two&#39;s
  * complement signed values.
  * 
  * </p>
@@ -323,7 +323,7 @@ Buffer.prototype.readInt16LE = function(offset, noAssert){
  * may be beyond the end of the buffer. Defaults to <code>false</code>.
  * 
  * </p>
- * <p>Works as <code>buffer.readUInt16*</code>, except buffer contents are treated as two&#39;s
+ * <p>Works as <code>buffer.readUInt16%2F</code>, except buffer contents are treated as two&#39;s
  * complement signed values.
  * 
  * </p>
@@ -340,7 +340,7 @@ Buffer.prototype.readInt16BE = function(offset, noAssert){
  * may be beyond the end of the buffer. Defaults to <code>false</code>.
  * 
  * </p>
- * <p>Works as <code>buffer.readUInt32*</code>, except buffer contents are treated as two&#39;s
+ * <p>Works as <code>buffer.readUInt32%2F</code>, except buffer contents are treated as two&#39;s
  * complement signed values.
  * 
  * </p>
@@ -357,7 +357,7 @@ Buffer.prototype.readInt32LE = function(offset, noAssert){
  * may be beyond the end of the buffer. Defaults to <code>false</code>.
  * 
  * </p>
- * <p>Works as <code>buffer.readUInt32*</code>, except buffer contents are treated as two&#39;s
+ * <p>Works as <code>buffer.readUInt32%2F</code>, except buffer contents are treated as two&#39;s
  * complement signed values.
  * 
  * </p>
@@ -654,7 +654,7 @@ Buffer.prototype.writeInt8 = function(value, offset, noAssert){
  * should not be used unless you are certain of correctness. Defaults to <code>false</code>.
  * 
  * </p>
- * <p>Works as <code>buffer.writeUInt16*</code>, except value is written out as a two&#39;s
+ * <p>Works as <code>buffer.writeUInt16%2F</code>, except value is written out as a two&#39;s
  * complement signed integer into <code>buffer</code>.
  * 
  * </p>
@@ -673,7 +673,7 @@ Buffer.prototype.writeInt16LE = function(value, offset, noAssert){
  * should not be used unless you are certain of correctness. Defaults to <code>false</code>.
  * 
  * </p>
- * <p>Works as <code>buffer.writeUInt16*</code>, except value is written out as a two&#39;s
+ * <p>Works as <code>buffer.writeUInt16%2F</code>, except value is written out as a two&#39;s
  * complement signed integer into <code>buffer</code>.
  * 
  * </p>
@@ -692,7 +692,7 @@ Buffer.prototype.writeInt16BE = function(value, offset, noAssert){
  * should not be used unless you are certain of correctness. Defaults to <code>false</code>.
  * 
  * </p>
- * <p>Works as <code>buffer.writeUInt32*</code>, except value is written out as a two&#39;s
+ * <p>Works as <code>buffer.writeUInt32%2F</code>, except value is written out as a two&#39;s
  * complement signed integer into <code>buffer</code>.
  * 
  * </p>
@@ -711,7 +711,7 @@ Buffer.prototype.writeInt32LE = function(value, offset, noAssert){
  * should not be used unless you are certain of correctness. Defaults to <code>false</code>.
  * 
  * </p>
- * <p>Works as <code>buffer.writeUInt32*</code>, except value is written out as a two&#39;s
+ * <p>Works as <code>buffer.writeUInt32%2F</code>, except value is written out as a two&#39;s
  * complement signed integer into <code>buffer</code>.
  * 
  * </p>
