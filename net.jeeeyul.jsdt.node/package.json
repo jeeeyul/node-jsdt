@@ -1,0 +1,14 @@
+{
+	"name": "jsdt-node",
+	"version": "0.0.1",
+	"private": "true",
+	"dependencies": 
+	{
+		"underscore": "*",
+		"underscore-keypath": "*",
+		"traverse": "*",
+		"cli": "*",
+		"handlebars": "*",
+		"fiber" : "*"
+	}
+}

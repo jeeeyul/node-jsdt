@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ASCII"?>
+<p:Palette xmlns:p="http://jeeeyul.net/pde-tools" fieldName="ICONS" folder="/net.jeeeyul.jsdt.node/icons">
+  <imageFiles fieldName="NODE" file="/net.jeeeyul.jsdt.node/icons/node.png"/>
+</p:Palette>

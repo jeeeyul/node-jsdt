@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+  <extension
+         point="org.eclipse.wst.jsdt.core.inferrenceSupport">
+         <inferenceProvider
+         	class="net.jeeeyul.jsdt.node.infer.NodeJSInferenceProvider" />
+         	
+   </extension>
+   
+   <extension
+         point="org.eclipse.wst.jsdt.core.JsGlobalScopeContainerInitializer">
+         <JsGlobalScopeContainerInitializer
+            class="net.jeeeyul.jsdt.node.lib.NodeJSLibraryInitializer"
+            id="net.jeeeyul.jsdt.node.lib">
+      </JsGlobalScopeContainerInitializer>
+   </extension>
+   <extension
+         point="org.eclipse.wst.jsdt.ui.JsGlobalScopeContainerPage">
+         <JsGlobalScopeContainerPage
+         	id="net.jeeeyul.jsdt.node.lib"
+         	name="NodeJS Libraries"
+         	class="net.jeeeyul.jsdt.node.lib.NodeJSLibPage"
+         	>
+         </JsGlobalScopeContainerPage>
+   </extension>
+   
+      <extension point="org.eclipse.wst.jsdt.ui.JsGlobalScopeUIInitializer">
+     <JsGlobalScopeUIInitializer
+     	id="net.jeeeyul.jsdt.node.lib"
+     	class="net.jeeeyul.jsdt.node.lib.NodeJSLibUiInitializer">
+     </JsGlobalScopeUIInitializer>
+   </extension>
+
+</plugin>

@@ -1,0 +1,5 @@
+/**
+ * @constructor
+ */
+fs.WriteStream = function(){
+}
