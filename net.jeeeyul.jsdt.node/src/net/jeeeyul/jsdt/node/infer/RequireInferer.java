@@ -80,9 +80,9 @@ public class RequireInferer extends AbstractInfererPartcipant<IASTNode> {
 		} else {
 			IPath targetPath = getSourceFile().getProjectRelativePath()
 					.removeLastSegments(1).append(relPath);
-			moduleName = targetPath.toPortableString().replace("/", ".");
+			moduleName = targetPath.toPortableString().replace("/", ".").replace("-", "_");
 		}
-
+		
 		InferredType type = ensureType(moduleName);
 		if (type != null) {
 			setInferredType(ast, type);

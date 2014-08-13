@@ -51,6 +51,7 @@ public class ModuleInferer extends AbstractInfererPartcipant<IAssignment> {
 			path = path.removeLastSegments(1);
 		}
 		String typeName = path.toPortableString().replace("/", ".");
+		typeName = typeName.replace("-", "_");
 
 		IFieldReference fieldReference = (IFieldReference) ast
 				.getLeftHandSide();
@@ -61,7 +62,7 @@ public class ModuleInferer extends AbstractInfererPartcipant<IAssignment> {
 		type.setNameStart(0);
 		type.setIsDefinition(true);
 		type.setModifiers(ClassFileConstants.AccPublic);
-
+		
 		if (expression instanceof IFunctionExpression) {
 			IFunctionExpression functionExpression = (IFunctionExpression) expression;
 			type.addMethod(fieldReference.getToken(),

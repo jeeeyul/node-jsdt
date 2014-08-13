@@ -30,6 +30,10 @@ public abstract class AbstractInfererPartcipant<T extends IASTNode> {
 		this.engine = engine;
 	}
 
+	protected InferredType getTypeOf(IExpression expression) {
+		return engine.getTypeOf(expression);
+	}
+
 	protected InferredType addType(char[] className) {
 		return engine.addType(className);
 	}
