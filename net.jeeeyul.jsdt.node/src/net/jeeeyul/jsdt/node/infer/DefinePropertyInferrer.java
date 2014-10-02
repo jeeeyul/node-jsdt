@@ -11,6 +11,7 @@ import org.eclipse.wst.jsdt.core.ast.IObjectLiteralField;
 import org.eclipse.wst.jsdt.core.ast.IStringLiteral;
 import org.eclipse.wst.jsdt.core.infer.InferredAttribute;
 import org.eclipse.wst.jsdt.core.infer.InferredType;
+import org.eclipse.wst.jsdt.internal.compiler.ast.Javadoc;
 import org.eclipse.wst.jsdt.internal.compiler.classfmt.ClassFileConstants;
 
 @SuppressWarnings("restriction")
@@ -25,8 +26,7 @@ public class DefinePropertyInferrer extends
 	public boolean canInfer(IFunctionCall ast) {
 		if (ast.getReceiver() != null
 				&& ast.getReceiver().toString().equals("Object")
-				&& Arrays.equals(ast.getSelector(),
-						"defineProperty".toCharArray())
+				&& Arrays.equals(ast.getSelector(), "defineProperty".toCharArray())
 				&& ast.getArguments() != null && ast.getArguments().length == 3) {
 
 			IExpression[] arguments = ast.getArguments();
@@ -35,8 +35,7 @@ public class DefinePropertyInferrer extends
 			}
 
 			IFieldReference prototypeRef = (IFieldReference) arguments[0];
-			if (!Arrays.equals(prototypeRef.getToken(),
-					"prototype".toCharArray())) {
+			if (!Arrays.equals(prototypeRef.getToken(), "prototype".toCharArray())) {
 				return false;
 			}
 
@@ -86,11 +85,15 @@ public class DefinePropertyInferrer extends
 			InferredAttribute attribute = type.addAttribute(
 					propertyNameNode.source(), propertyNameNode,
 					propertyNameNode.sourceStart() + 1);
-			
-			IFunctionExpression fncExp = (IFunctionExpression) valueInitializer;
-			attribute.type = fncExp.getMethodDeclaration().inferredType;
-		}
-		
-	}
 
+			Javadoc doc = (Javadoc) getNode.getJsDoc();
+			if (doc != null && doc.returnType != null) {
+				attribute.type = ensureType(doc.returnType.getFullTypeName());
+			}
+			else {
+				IFunctionExpression fncExp = (IFunctionExpression) valueInitializer;
+				attribute.type = fncExp.getMethodDeclaration().inferredType;
+			}
+		}
+	}
 }
