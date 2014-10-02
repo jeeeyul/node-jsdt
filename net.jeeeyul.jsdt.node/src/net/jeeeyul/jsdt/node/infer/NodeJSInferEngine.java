@@ -3,6 +3,7 @@ package net.jeeeyul.jsdt.node.infer;
 import org.eclipse.wst.jsdt.core.ast.IAssignment;
 import org.eclipse.wst.jsdt.core.ast.IExpression;
 import org.eclipse.wst.jsdt.core.ast.IFunctionCall;
+import org.eclipse.wst.jsdt.core.ast.IFunctionDeclaration;
 import org.eclipse.wst.jsdt.core.ast.IInstanceOfExpression;
 import org.eclipse.wst.jsdt.core.ast.ILocalDeclaration;
 import org.eclipse.wst.jsdt.core.infer.InferEngine;
@@ -13,10 +14,11 @@ import org.eclipse.wst.jsdt.internal.compiler.ast.CompilationUnitDeclaration;
 @SuppressWarnings("restriction")
 public class NodeJSInferEngine extends InferEngine {
 	private CompilationUnitDeclaration compUnit;
+
 	private ModuleInferer moduleInferer = new ModuleInferer(this);
 	private RequireInferer requireInferer = new RequireInferer(this);
-	private DefinePropertyInferrer definePropertyInferrer = new DefinePropertyInferrer(
-			this);
+	private DefinePropertyInferrer definePropertyInferrer = new DefinePropertyInferrer(this);
+	private CommentedParameterInferrer commentedParameterInferrer = new CommentedParameterInferrer(this);
 
 	public NodeJSInferEngine(InferrenceProvider provider) {
 		this.inferenceProvider = provider;
@@ -83,5 +85,13 @@ public class NodeJSInferEngine extends InferEngine {
 	@Override
 	public boolean visit(IInstanceOfExpression instanceOfExpression) {
 		return super.visit(instanceOfExpression);
+	}
+
+	@Override
+	public boolean visit(IFunctionDeclaration methodDeclaration) {
+		if (commentedParameterInferrer.canInfer(methodDeclaration)) {
+			commentedParameterInferrer.infer(methodDeclaration);
+		}
+		return super.visit(methodDeclaration);
 	}
 }

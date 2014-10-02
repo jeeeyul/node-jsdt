@@ -31,10 +31,8 @@ public class ModuleInferer extends AbstractInfererPartcipant<IAssignment> {
 		if (!(fieldReference.getReceiver() instanceof ISingleNameReference)) {
 			return false;
 		}
-		ISingleNameReference singleNameReference = (ISingleNameReference) fieldReference
-				.getReceiver();
-		if (!Arrays.equals(singleNameReference.getToken(),
-				"exports".toCharArray())) {
+		ISingleNameReference singleNameReference = (ISingleNameReference) fieldReference.getReceiver();
+		if (!Arrays.equals(singleNameReference.getToken(), "exports".toCharArray())) {
 			return false;
 		}
 
@@ -53,8 +51,7 @@ public class ModuleInferer extends AbstractInfererPartcipant<IAssignment> {
 		String typeName = path.toPortableString().replace("/", ".");
 		typeName = typeName.replace("-", "_");
 
-		IFieldReference fieldReference = (IFieldReference) ast
-				.getLeftHandSide();
+		IFieldReference fieldReference = (IFieldReference) ast.getLeftHandSide();
 
 		InferredType type = ensureType(typeName);
 		type.sourceStart = 0;
@@ -62,7 +59,7 @@ public class ModuleInferer extends AbstractInfererPartcipant<IAssignment> {
 		type.setNameStart(0);
 		type.setIsDefinition(true);
 		type.setModifiers(ClassFileConstants.AccPublic);
-		
+
 		if (expression instanceof IFunctionExpression) {
 			IFunctionExpression functionExpression = (IFunctionExpression) expression;
 			type.addMethod(fieldReference.getToken(),
@@ -73,9 +70,9 @@ public class ModuleInferer extends AbstractInfererPartcipant<IAssignment> {
 
 		else {
 			InferredAttribute attr = type.addAttribute(
-					fieldReference.getToken(), ast.getLeftHandSide(),
-					fieldReference.sourceEnd()
-							- fieldReference.getToken().length + 1);
+					fieldReference.getToken(), 
+					ast.getLeftHandSide(),
+					fieldReference.sourceEnd() - fieldReference.getToken().length + 1);
 			attr.type = ast.getInferredType();
 		}
 	}
